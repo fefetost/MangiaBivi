@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">MangiaEBive</string>
+    <string name="app_name">Mangia E Bivi</string>
+    <string name="email_hint">Insert E-Mail</string>
+    <string name="password_hint">Insert Password</string>
+    <string name="phone_hint">Insert Phone Number</string>
+    <string name="Bottone_Login">Login</string>
+    <string name="Bottone_Registrati">Registrati</string>
+    <string name="Password_Errata">Password Errata</string>
+    <string name="email_Errata">Email Errata</string>
+    <string name="login_ok">Login OK</string>
+    <string name="ena_darkmode">Enable Dark Mode</string>
 </resources>
