@@ -1,6 +1,7 @@
 package com.tosto.federico.mangiaebive.UI.Activities;
 
 import android.content.Context;
+import android.telephony.PhoneNumberUtils;
 import android.util.Patterns;
 import android.widget.Toast;
 
@@ -20,5 +21,9 @@ public class Utility extends  AppCompatActivity {
         if (password.length()<minpasswordlenght){
             return false;
         }else return true;
+    }
+
+    public static boolean verifyPhoneNumber(String phonenumber){
+        return PhoneNumberUtils.isGlobalPhoneNumber(phonenumber);
     }
 }

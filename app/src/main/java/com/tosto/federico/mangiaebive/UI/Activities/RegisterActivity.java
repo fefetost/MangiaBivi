@@ -2,10 +2,9 @@ package com.tosto.federico.mangiaebive.UI.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.PhoneNumberUtils;
+
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +18,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText Emailedit;
     EditText Passwordedit;
     EditText Phonedit;
-    private boolean verifyEmail(String email){
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
 
     private void enableregister(){
 
@@ -29,18 +25,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String password = Passwordedit.getText().toString();
         String phonenumber = Phonedit.getText().toString();
 
-        if (!verifyEmail(email)){
-            return;
-        }
-        if (password.length()<minpasswordlenght){
-            return;
-        }
-        if (!PhoneNumberUtils.isGlobalPhoneNumber(phonenumber)){
-            return;
-        }
-        Registerbutton.setEnabled(true);
+        if (!Utility.verifyEmail(email))return;
 
+        if (!(Utility.verifyPassword(password,minpasswordlenght)))return;
+
+        if (!(Utility.verifyPhoneNumber(phonenumber)))return;
+
+        Registerbutton.setEnabled(true);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
+        //TODO Registrazione
     }
 
     @Override
