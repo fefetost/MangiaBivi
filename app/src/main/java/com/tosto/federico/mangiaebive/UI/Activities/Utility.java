@@ -1,4 +1,4 @@
-package com.tosto.federico.mangiaebive;
+package com.tosto.federico.mangiaebive.UI.Activities;
 
 import android.content.Context;
 import android.util.Patterns;

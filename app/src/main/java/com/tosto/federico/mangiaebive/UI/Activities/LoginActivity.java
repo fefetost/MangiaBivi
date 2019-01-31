@@ -1,21 +1,20 @@
-package com.tosto.federico.mangiaebive;
+package com.tosto.federico.mangiaebive.UI.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+
+import com.tosto.federico.mangiaebive.R;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     final static int minpasswordlenght=7;
-    final static String KEY_MAIL = "email";
 
     Button Loginbutton;
     Button Registerbutton;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         Loginbutton = findViewById(R.id.bottone_login);
         Registerbutton =findViewById(R.id.bottone_registrati);
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Loginbutton.setOnClickListener(this);
         Registerbutton.setOnClickListener(this);
 
-        Log.i("MainActivity","Main Activity Created");
+        Log.i("LoginActivity","Main Activity Created");
 
     }
 
@@ -65,13 +64,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (view.getId() == R.id.bottone_login){
             if (doLogin()){
-                Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+                Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
                 startActivity(intent);
             }
         }
 
         else if (view.getId()== R.id.bottone_registrati){
-            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
 
         }
