@@ -47,29 +47,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String email = Emailedit.getText().toString();
         String password = Passwordedit.getText().toString();
 
-        if (!verifyEmail(email)){
-            showToast(R.string.email_Errata);
+        if (!Utility.verifyEmail(email)){
+            Utility.showToast(this,getString(R.string.email_Errata));
             return false;
         }
-        if (!verifyPassword(password)){
-            showToast(R.string.Password_Errata);
+        if (!(Utility.verifyPassword(password,minpasswordlenght))){
+            Utility.showToast(this,getString(R.string.Password_Errata));
             return false;
         }
-        showToast(R.string.login_ok);
+        Utility.showToast(this,getString(R.string.login_ok));
         return true;
 
-    }
-    private void showToast(int id){
-        Toast.makeText(this, getString(id),Toast.LENGTH_SHORT).show();
-    }
-    private boolean verifyEmail(String email){
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-    private boolean verifyPassword(String password){
-        if (password.length()<minpasswordlenght){
-            return false;
-        }else return true;
     }
 
     @Override
