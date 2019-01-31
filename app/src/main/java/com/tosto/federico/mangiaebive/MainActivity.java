@@ -46,11 +46,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String email = Emailedit.getText().toString();
         String password = Passwordedit.getText().toString();
+
         if (!verifyEmail(email)){
             showToast(R.string.email_Errata);
             return false;
         }
-        if (password.length()<minpasswordlenght){
+        if (!verifyPassword(password)){
             showToast(R.string.Password_Errata);
             return false;
         }
@@ -63,6 +64,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     private boolean verifyEmail(String email){
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private boolean verifyPassword(String password){
+        if (password.length()<minpasswordlenght){
+            return false;
+        }else return true;
     }
 
     @Override
