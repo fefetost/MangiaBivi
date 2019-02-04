@@ -1,4 +1,4 @@
-package com.tosto.federico.mangiaebive.UI.Activities;
+package com.tosto.federico.mangiaebive.ui.activities;
 
 import android.content.Context;
 import android.telephony.PhoneNumberUtils;
@@ -18,9 +18,7 @@ public class Utility extends  AppCompatActivity {
     }
 
     public static boolean verifyPassword(String password, int minpasswordlenght){
-        if (password.length()<minpasswordlenght){
-            return false;
-        }else return true;
+        return password.length() >= minpasswordlenght;
     }
 
     public static boolean verifyPhoneNumber(String phonenumber){

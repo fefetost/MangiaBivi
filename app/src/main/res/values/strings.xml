@@ -10,6 +10,7 @@
     <string name="login_ok">Login OK</string>
     <string name="ena_darkmode">Enable Dark Mode</string>
     <string name="login">Login</string>
+    <string name="shop">Shop</string>
     <string name="checkout">Checkout</string>
     <string name="register">Registrati</string>
 </resources>

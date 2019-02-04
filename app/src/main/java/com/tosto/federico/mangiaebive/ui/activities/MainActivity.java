@@ -1,4 +1,4 @@
-package com.tosto.federico.mangiaebive.UI.Activities;
+package com.tosto.federico.mangiaebive.ui.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }else if(item.getItemId()==R.id.checkout_menu){
             startActivity(new Intent(this, CheckoutActivity.class));
+            return true;
+        }
+        else if(item.getItemId()==R.id.shop_menu){
+            startActivity(new Intent(this, ShopActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

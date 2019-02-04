@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.tosto.federico.mangiaebive.UI.Activities.LoginActivity"
+    tools:context="com.tosto.federico.mangiaebive.ui.activities.LoginActivity"
     android:id="@+id/layout">
 
     <LinearLayout

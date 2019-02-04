@@ -1,4 +1,4 @@
-package com.tosto.federico.mangiaebive.UI.Activities;
+package com.tosto.federico.mangiaebive.ui.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
