@@ -13,28 +13,44 @@ import com.tosto.federico.mangiaebive.datamodels.Restaurant;
 
 import java.util.ArrayList;
 
-public class RestaurantAdapter extends RecyclerView.Adapter{
+public class RestaurantAdapter extends RecyclerView.Adapter {
 
     private LayoutInflater inflater;
     private ArrayList<Restaurant> restaurant;
+    private boolean isGridMode;
 
-    public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurant) {
+
+    public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurant, boolean isGridMode) {
         this.inflater = LayoutInflater.from(context);
         this.restaurant = restaurant;
+        this.isGridMode = isGridMode;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= inflater.inflate(R.layout.item_restaurant,parent,false);
+        View view;
+        if (!isGridMode) {
+            view = inflater.inflate(R.layout.item_restaurant, parent, false);
+        } else {
+            view = inflater.inflate(R.layout.item_restaurant_grid, parent, false);
+        }
         return new RestaurantViewHolder(view);
+    }
+
+    public void setGridMode(boolean isGridMode) {
+        this.isGridMode = isGridMode;
+    }
+
+    public boolean isGridMode() {
+        return isGridMode;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        RestaurantViewHolder restaurantViewHolder=(RestaurantViewHolder)holder;
+        RestaurantViewHolder restaurantViewHolder = (RestaurantViewHolder) holder;
         restaurantViewHolder.nome.setText(restaurant.get(position).getNome());
         restaurantViewHolder.via.setText(restaurant.get(position).getVia());
-        restaurantViewHolder.prezzo.setText(""+restaurant.get(position).getPrezzo());
+        restaurantViewHolder.prezzo.setText("" + restaurant.get(position).getPrezzo());
         restaurantViewHolder.immagine.setImageResource(restaurant.get(position).getUri());
     }
 
@@ -43,7 +59,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter{
         return 4;
     }
 
-    public static class RestaurantViewHolder extends RecyclerView.ViewHolder{
+    public static class RestaurantViewHolder extends RecyclerView.ViewHolder {
         public TextView nome;
         public TextView via;
         public TextView prezzo;
