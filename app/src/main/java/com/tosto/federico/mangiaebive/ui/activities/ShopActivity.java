@@ -1,6 +1,5 @@
 package com.tosto.federico.mangiaebive.ui.activities;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +24,7 @@ public class ShopActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     RestaurantAdapter adapter;
     ArrayList<Restaurant> arrayList;
-    boolean grid=true;
+    boolean grid = true;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -34,7 +33,7 @@ public class ShopActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop);
         recycler = findViewById(R.id.recycleview);
         sharedPreferences = this.getSharedPreferences(file_key, MODE_PRIVATE);
-        grid =sharedPreferences.getBoolean(view_key, false);
+        grid = sharedPreferences.getBoolean(view_key, false);
         adapter = new RestaurantAdapter(this, getData(), grid);
         setLayoutManager();
         recycler.setAdapter(adapter);
@@ -94,15 +93,15 @@ public class ShopActivity extends AppCompatActivity {
         return grid;
     }
 
-    private void setLayoutManager(){
-        layoutManager= adapter.isGridMode()?new GridLayoutManager(this, 2):new LinearLayoutManager(this);
+    private void setLayoutManager() {
+        layoutManager = adapter.isGridMode() ? new GridLayoutManager(this, 2) : new LinearLayoutManager(this);
     }
 
-    private void saveLayoutManager(boolean grid){
+    private void saveLayoutManager(boolean grid) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(view_key,grid);
-        if (editor.commit()){
-            Utility.showToast(this,"Salvato");
+        editor.putBoolean(view_key, grid);
+        if (editor.commit()) {
+            Utility.showToast(this, "Salvato");
         }
     }
 }

@@ -1,0 +1,98 @@
+package com.tosto.federico.mangiaebive.ui.activities;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.tosto.federico.mangiaebive.R;
+import com.tosto.federico.mangiaebive.datamodels.Item;
+import com.tosto.federico.mangiaebive.datamodels.Order;
+import com.tosto.federico.mangiaebive.datamodels.Restaurant;
+import com.tosto.federico.mangiaebive.ui.adapters.OrderProductsAdapter;
+
+import java.util.ArrayList;
+
+public class ShoppingCartActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private TextView restaturantTv, restaurantAdress, totalTv;
+    private RecyclerView productRv;
+    private Button payBtn;
+    private LinearLayoutManager layoutManager;
+    private OrderProductsAdapter adapter;
+
+
+    private Order order;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_shopping_cart);
+
+        restaturantTv = findViewById(R.id.restaurant_name);
+        restaurantAdress = findViewById(R.id.restaurant_adress);
+        totalTv = findViewById(R.id.total_tv);
+        productRv = findViewById(R.id.product_rvr);
+        payBtn = findViewById(R.id.pay_btn);
+
+        order = getOrder();
+
+        layoutManager = new LinearLayoutManager(this);
+        productRv.setLayoutManager(layoutManager);
+        adapter = new OrderProductsAdapter(this, order.getProducts());
+        productRv.setAdapter(adapter);
+        payBtn.setOnClickListener(this);
+
+        bindData();
+
+    }
+
+
+    private void bindData() {
+        restaturantTv.setText(order.getRestaurant().getNome());
+        restaurantAdress.setText(order.getRestaurant().getVia());
+        totalTv.setText(String.valueOf(order.getTotal()));
+
+
+    }
+
+
+    //TODO hardcoded
+    private Order getOrder() {
+
+        Order mockOrder = new Order();
+        mockOrder.setProducts(getProducts());
+        mockOrder.setRestaurant(getRestaurant());
+        mockOrder.setTotal(30.00f);
+
+        return mockOrder;
+    }
+
+
+    private Restaurant getRestaurant() {
+        return new Restaurant("McDonald's","Via Tiburtina",8,R.drawable.mc_donalds);
+    }
+
+    //TODO hardcoded
+    private ArrayList<Item> getProducts() {
+        ArrayList<Item> products = new ArrayList<>();
+        products.add(new Item("McMenu", 7,8));
+        products.add(new Item("McMenu", 7,8));
+        products.add(new Item("McMenu", 7,8));
+        products.add(new Item("McMenu", 7,8));
+        products.add(new Item("McMenu", 7,8));
+        products.add(new Item("McMenu", 7,8));
+        return products;
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        //TODO Click
+    }
+}

@@ -1,7 +1,7 @@
 package com.tosto.federico.mangiaebive.datamodels;
 
+import java.util.ArrayList;
 
-import android.net.Uri;
 import android.support.annotation.DrawableRes;
 
 public class Restaurant {
@@ -10,8 +10,9 @@ public class Restaurant {
     private float prezzo;
     @DrawableRes
     public int uri;
+    private ArrayList<Item> products;
 
-    public Restaurant(String nome, String via, float prezzo , @DrawableRes int uri) {
+    public Restaurant(String nome, String via, float prezzo, @DrawableRes int uri) {
         this.via = via;
         this.nome = nome;
         this.prezzo = prezzo;
@@ -48,5 +49,13 @@ public class Restaurant {
 
     public void setUri(int uri) {
         this.uri = uri;
+    }
+
+    public ArrayList<Item> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Item> products) {
+        this.products = products;
     }
 }
