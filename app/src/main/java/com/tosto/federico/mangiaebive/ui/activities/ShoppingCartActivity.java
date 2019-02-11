@@ -6,8 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.tosto.federico.mangiaebive.R;
 import com.tosto.federico.mangiaebive.datamodels.Item;
 import com.tosto.federico.mangiaebive.datamodels.Order;
@@ -23,7 +25,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
     private Button payBtn;
     private LinearLayoutManager layoutManager;
     private OrderProductsAdapter adapter;
-
+    private ImageView restaurantIv;
 
     private Order order;
 
@@ -34,11 +36,12 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
 
         setContentView(R.layout.activity_shopping_cart);
 
-        restaturantTv = findViewById(R.id.restaurant_name);
-        restaurantAdress = findViewById(R.id.restaurant_adress);
+        restaturantTv = findViewById(R.id.shopnametc);
+        restaurantAdress = findViewById(R.id.shopaddresstc);
         totalTv = findViewById(R.id.total_tv);
         productRv = findViewById(R.id.product_rvr);
         payBtn = findViewById(R.id.pay_btn);
+        restaurantIv = findViewById(R.id.imagecard);
 
         order = getOrder();
 
@@ -57,7 +60,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
         restaturantTv.setText(order.getRestaurant().getNome());
         restaurantAdress.setText(order.getRestaurant().getVia());
         totalTv.setText(String.valueOf(order.getTotal()));
-
+        Glide.with(this).load(order.getRestaurant().getUri()).into(restaurantIv);
 
     }
 
