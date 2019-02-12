@@ -74,6 +74,7 @@ public class CheckoutActivity extends AppCompatActivity implements ItemAdapter.O
             }
         });
 
+        enableBttuon();
 
     }
 
@@ -81,21 +82,22 @@ public class CheckoutActivity extends AppCompatActivity implements ItemAdapter.O
     private void binData() {
 
         restaurant = getRestaurant();
-        restaurant.setUri(R.drawable.mc_donalds);
+        restaurant.setUri(R.drawable.burger_king);
         restaurant.setProducts(getData());
         shopNameTv.setText(restaurant.getNome());
         shopAddress.setText(restaurant.getVia());
-        Glide.with(this).load(R.drawable.burger_king).into(restaurantIv);
+        Glide.with(this).load(restaurant.getUri()).into(restaurantIv);
         progressBar.setMax((int) restaurant.getPrezzo() * 100);
 
     }
 
+    //TODO hardcoded
     private ArrayList<Item> getData() {
         ArrayList<Item> arrayList = new ArrayList<>();
-        Item Panin1 = new Item("Hamburger", 1, 8.0F);
-        Item Panin2 = new Item("Hamburger", 1, 2.0F);
-        Item Panin3 = new Item("Hamburger", 1, 6.0F);
-        Item Panin4 = new Item("Hamburger", 1, 3.0F);
+        Item Panin1 = new Item("Hamburger", 0, 8.0F);
+        Item Panin2 = new Item("Hamburger", 0, 2.0F);
+        Item Panin3 = new Item("Hamburger", 0, 6.0F);
+        Item Panin4 = new Item("Hamburger", 0, 3.0F);
         arrayList.add(Panin1);
         arrayList.add(Panin2);
         arrayList.add(Panin3);

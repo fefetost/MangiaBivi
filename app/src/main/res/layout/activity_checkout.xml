@@ -102,12 +102,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="8dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:layout_marginBottom="4dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="5"
-                    android:paddingLeft="8dp"
                     android:paddingRight="8dp">
                     <TextView
                         android:layout_width="0dp"
@@ -148,13 +150,16 @@
                     android:layout_marginRight="16dp"
                     android:progress="25"
                     android:progressTint="@color/colorPrimary"
-                    android:progressBackgroundTint="@color/colorPrimaryDark"/>
+                    android:progressBackgroundTint="@color/colorPrimaryDark"
+                    android:paddingBottom="4dp"/>
 
                 <Button
                     android:id="@+id/checkout_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/checkout" />
+                    android:text="@string/checkout"
+                    style="@style/AppTheme.RoundedCornerMaterialButton"
+                    android:paddingLeft="4dp"/>
 
             </LinearLayout>
         </LinearLayout>

@@ -103,13 +103,11 @@
 
     <Button
         android:id="@+id/pay_btn"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        android:text="@string/pay"
-        android:textColor="@color/primaryTextColor" />
+        android:text="@string/pay"/>
 
 
 </RelativeLayout>

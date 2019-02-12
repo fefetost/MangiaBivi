@@ -37,12 +37,12 @@ public class Item {
     }
 
     public void increaseQuantita() {
-        this.quantita = quantita++;
+        quantita++;
     }
 
     public void decreaseQuantita() {
         if (quantita == 0) return;
-        this.quantita = quantita--;
+        quantita--;
     }
 
     public float getSubtotal() {

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ShoppingCartActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView restaturantTv, restaurantAdress, totalTv;
+    private TextView restaturantTv, restaurantAdress, totalTv, restaurantminord;
     private RecyclerView productRv;
     private Button payBtn;
     private LinearLayoutManager layoutManager;
@@ -38,6 +38,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
 
         restaturantTv = findViewById(R.id.shopnametc);
         restaurantAdress = findViewById(R.id.shopaddresstc);
+        restaurantminord = findViewById(R.id.minimumordertc);
         totalTv = findViewById(R.id.total_tv);
         productRv = findViewById(R.id.product_rvr);
         payBtn = findViewById(R.id.pay_btn);
@@ -59,6 +60,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
     private void bindData() {
         restaturantTv.setText(order.getRestaurant().getNome());
         restaurantAdress.setText(order.getRestaurant().getVia());
+        restaurantminord.setText(String.valueOf(order.getRestaurant().getPrezzo()));
         totalTv.setText(String.valueOf(order.getTotal()));
         Glide.with(this).load(order.getRestaurant().getUri()).into(restaurantIv);
 
@@ -78,7 +80,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
 
 
     private Restaurant getRestaurant() {
-        return new Restaurant("McDonald's","Via Tiburtina",8,R.drawable.mc_donalds);
+        return new Restaurant("Burger King","Via Tiburtina",20,R.drawable.burger_king);
     }
 
     //TODO hardcoded
