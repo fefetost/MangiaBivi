@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.tosto.federico.mangiaebive.R;
 import com.tosto.federico.mangiaebive.datamodels.Item;
+import com.tosto.federico.mangiaebive.datamodels.Restaurant;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,11 @@ public class ItemAdapter extends RecyclerView.Adapter {
     public ItemAdapter(Context context, ArrayList<Item> item) {
         this.inflater = LayoutInflater.from(context);
         this.item = item;
+    }
+
+    public void setData(ArrayList<Item> data) {
+        this.item = data;
+        notifyDataSetChanged();
     }
 
     @NonNull

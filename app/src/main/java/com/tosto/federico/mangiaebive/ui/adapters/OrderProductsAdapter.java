@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import com.tosto.federico.mangiaebive.R;
 import com.tosto.federico.mangiaebive.datamodels.Item;
@@ -20,13 +22,29 @@ public class OrderProductsAdapter extends RecyclerView.Adapter<OrderProductsAdap
     private ArrayList<Item> dataSet;
     private Context context;
     private LayoutInflater inflater;
+    private float miniumOrder;
 
 
-    public OrderProductsAdapter(Context context, ArrayList<Item> dataSet) {
+    public  OrderProductsAdapter(Context context, ArrayList<Item> dataSet,float miniumOrder){
 
         this.dataSet = dataSet;
         this.context = context;
+        this.miniumOrder = miniumOrder;
         inflater = LayoutInflater.from(context);
+    }
+
+    public interface onItemRemovedListener{
+        void onItemRemoved(float subtotal);
+    }
+    private onItemRemovedListener onItemRemovedListener;
+
+
+    public OrderProductsAdapter.onItemRemovedListener getOnItemRemovedListener() {
+        return onItemRemovedListener;
+    }
+
+    public void setOnItemRemovedListener(OrderProductsAdapter.onItemRemovedListener onItemRemovedListener) {
+        this.onItemRemovedListener = onItemRemovedListener;
     }
 
 
@@ -37,6 +55,11 @@ public class OrderProductsAdapter extends RecyclerView.Adapter<OrderProductsAdap
         return new OrderProductViewHolder(inflater.inflate(R.layout.item_shopping_cart, viewGroup, false));
     }
 
+    private void removeItem(int index){
+        dataSet.remove(index);
+        notifyItemRemoved(index);
+
+    }
     @Override
     public void onBindViewHolder(@NonNull OrderProductViewHolder orderProductViewHolder, int i) {
         Item product = dataSet.get(i);
@@ -68,9 +91,25 @@ public class OrderProductsAdapter extends RecyclerView.Adapter<OrderProductsAdap
 
         @Override
         public void onClick(View view) {
-            //TODO alertDialog
-            dataSet.remove(getAdapterPosition());
-            notifyItemRemoved(getAdapterPosition());
+            AlertDialog.Builder removeAlert = new AlertDialog.Builder(context);
+            removeAlert.setTitle(R.string.be_careful)
+                    .setMessage(R.string.remove_title)
+                    .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            onItemRemovedListener.onItemRemoved(dataSet.get(getAdapterPosition()).getSubtotal());
+                            removeItem(getAdapterPosition());
+
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    })
+                    .create()
+                    .show();
+
         }
     }
 }

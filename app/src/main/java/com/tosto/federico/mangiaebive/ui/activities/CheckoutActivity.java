@@ -12,11 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
-
 import com.tosto.federico.mangiaebive.R;
 import com.tosto.federico.mangiaebive.datamodels.Item;
 import com.tosto.federico.mangiaebive.datamodels.Restaurant;

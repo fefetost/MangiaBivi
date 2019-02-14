@@ -20,4 +20,8 @@
     <string name="min_ord_def">10,00 €</string>
     <string name="order_label">Riepilogo ordine</string>
     <string name="pay">Pay</string>
+    <string name="remove_title">Are you sure?</string>
+    <string name="be_careful">Be careful</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">cancel</string>
 </resources>

@@ -1,6 +1,10 @@
 package com.tosto.federico.mangiaebive.datamodels;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Item {
     private int quantita;
     private String nome;
@@ -10,6 +14,11 @@ public class Item {
         this.quantita = quantita;
         this.nome = nome;
         this.prezzo = prezzo;
+    }
+    public Item(JSONObject jsonRestaurant) throws JSONException {
+        nome = jsonRestaurant.getString("name");
+        quantita = 0;
+        prezzo = Float.valueOf(jsonRestaurant.getString("price"));
     }
 
     public int getQuantita() {

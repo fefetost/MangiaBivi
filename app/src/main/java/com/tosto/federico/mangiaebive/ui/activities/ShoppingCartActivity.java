@@ -18,7 +18,7 @@ import com.tosto.federico.mangiaebive.ui.adapters.OrderProductsAdapter;
 
 import java.util.ArrayList;
 
-public class ShoppingCartActivity extends AppCompatActivity implements View.OnClickListener {
+public class ShoppingCartActivity extends AppCompatActivity implements View.OnClickListener,OrderProductsAdapter.onItemRemovedListener{
 
     private TextView restaturantTv, restaurantAdress, totalTv, restaurantminord;
     private RecyclerView productRv;
@@ -28,6 +28,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
     private ImageView restaurantIv;
 
     private Order order;
+    private float total;
 
 
     @Override
@@ -45,10 +46,12 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
         restaurantIv = findViewById(R.id.imagecard);
 
         order = getOrder();
+        total = order.getTotal();
 
         layoutManager = new LinearLayoutManager(this);
         productRv.setLayoutManager(layoutManager);
-        adapter = new OrderProductsAdapter(this, order.getProducts());
+        adapter = new OrderProductsAdapter(this,order.getProducts(),order.getRestaurant().getPrezzo());
+        adapter.setOnItemRemovedListener(this);
         productRv.setAdapter(adapter);
         payBtn.setOnClickListener(this);
 
@@ -99,5 +102,15 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         //TODO Click
+    }
+
+    public void onItemRemoved(float subtotal) {
+        updateTotal(subtotal);
+    }
+
+    private void updateTotal(float subtotal) {
+        if(total == 0) return;
+        total -=subtotal;
+        totalTv.setText(String.valueOf(total));
     }
 }
